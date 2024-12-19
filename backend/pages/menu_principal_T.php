@@ -32,10 +32,10 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item">
-                    <a style="color: white;" class="nav-link" aria-current="page" href="gestion_alumnos">Alumnos </a>
+                    <a style="color: white;" class="nav-link" aria-current="page" href="procesar_consulta_A">Alumnos </a>
                 </li>
                 <li class="nav-item">
-                    <a style="color: white;" class="nav-link" aria-current="page" href="gestion_tutores">Tutores </a>
+                    <a style="color: white;" class="nav-link" aria-current="page" href="procesar_consulta_T">Tutores </a>
                 </li>
                 <li class="nav-item">
                     <a style="color: white;" class="nav-link" aria-current="page" href="gestion_grupos">Grupos </a>

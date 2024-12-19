@@ -11,22 +11,41 @@ include_once('../../database/conexion_bd.php');
 
         //Altas
         public function agregarTutor($nc,$nombre,$primerAp,$segundoAp,$semestre,$carrera,$fecha,$numTel){
-            $sql = "INSERT INTO tutores VALUES('$nc', '$nombre', '$primerAp', '$segundoAp', $semestre, '$carrera','$fecha','$numTel')";
-            $res = mysqli_query($this->conexion, $sql);
-            return $res;
+            $sql = "INSERT INTO tutores (Num_Control, Nombre, Primer_Ap, Segundo_Ap, Semestre, Carrera, Fecha_Nacimiento, Num_Telefono) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                $stmt = $this->conexion->prepare($sql);
+                if ($stmt === false) {
+                    die('Error al preparar la consulta: ' . $this->conexion->error);
+                }
+                $stmt->bind_param('ssssssss', $nc, $nombre, $primerAp, $segundoAp, $semestre, $carrera, $fecha, $numTel);
+                $res = $stmt->execute();
+                $stmt->close();
+                return $res;
         }
 
         //Bajas
         public function eliminarTutor($nc){
-            $sql = "DELETE FROM tutores WHERE Num_Control = '$nc'";
-            $res = mysqli_query($this->conexion, $sql);
+            $sql = "DELETE FROM tutores WHERE Num_Control = ?";
+            $stmt = $this->conexion->prepare($sql);
+            if ($stmt === false) {
+                die('Error al preparar la consulta: ' . $this->conexion->error);
+            }
+            $stmt->bind_param('s',$nc);
+            $res = $stmt->execute();
+            $stmt->close();
             return $res;
         }
 
         //Cambios
         public function editarTutor($nc,$nombre,$pA,$sA,$semestre,$carrera,$fecha,$numTel){
-            $sql = "UPDATE tutores SET Nombre = '$nombre', Primer_Ap = '$pA', Segundo_Ap = '$sA', Semestre = $semestre, Carrera = '$carrera', Fecha_Nacimiento = '$fecha', Num_Telefono = '$numTel' WHERE Num_Control = '$nc';";
-            $res = mysqli_query($this->conexion, $sql);
+            $sql = "UPDATE tutores SET Nombre = ?, Primer_Ap = ?, Segundo_Ap = ?, Semestre = ?, Carrera = ?, Fecha_Nacimiento = ?, Num_Telefono = ? WHERE Num_Control = ?";
+            $stmt = $this->conexion->prepare($sql);
+                if ($stmt === false) {
+                    die('Error al preparar la consulta: ' . $this->conexion->error);
+                }
+            $stmt->bind_param('ssssssss', $nombre, $pA, $sA, $semestre, $carrera, $fecha, $numTel,$nc);
+            $res = $stmt->execute();
+            $stmt->close();
             return $res;
         }
 

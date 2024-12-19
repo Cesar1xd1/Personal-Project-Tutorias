@@ -18,8 +18,8 @@
     $tutorDAO = new TutorDAO();
     $datos = $tutorDAO->mostrarLogEliminacion("x");
 
-    echo '<div class="container"';
-
+    echo '<div class="container">';
+    echo '<h2>Log</h2>';
     if(mysqli_num_rows($datos)>0){
         echo'<div class="table-responsive" style="overflow-y: scroll; height: 425px;"><table class="table table-success table-striped" style="overflow-y: scroll;">';
         echo'<thead>
