@@ -1,0 +1,8 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L,QSA]
+
+RewriteRule ^backend/pages/formulario_cambios_alumnos/([0-9]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([0-9]+)/([a-zA-Z0-9_-]+)/([0-9-]+)/([0-9]+)$ \
+backend/pages/formulario_cambios_alumnos?nc=$1&nombre=$2&primerAp=$3&segundoAp=$4&semestre=$5&carrera=$6&fecha=$7&tel=$8 [L,QSA]
